@@ -1,0 +1,1 @@
+pandoc -f docx -t markdown --extract-media ./ -o UserGuid.md 龙芯通用服务器BIOS用户手册V5.0-edit2.docx
