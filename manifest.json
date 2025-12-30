@@ -1,0 +1,64 @@
+{
+  "schema_version": "1.0",
+  "coverage": "partial",
+  "machines": [
+    {
+      "series": "5000Series",
+      "category": "PC",
+      "model": "3A5000-7A2000-EVB",
+      "latest": [
+        {
+          "base": "UDK2018",
+          "version": "V4.0.05756",
+          "release_tag": "prestable2405_0523",
+          "build": "dbg",
+          "secure_boot": null,
+          "gmem": null,
+          "path": "5000Series/PC/3A5000-7A2000-EVB/UDK2018-3A5000-7A2000_EVB_V4.0.05756_prestable2405_0523dbg.fd",
+          "sha256": "9620eaa7f44ac96ef06e6439372948fcb8d7ee873e8cbb59384d11f1da1e5931",
+          "checksum_source": "5000Series/PC/3A5000-7A2000-EVB/SHA256SUMS.txt"
+        },
+        {
+          "base": "UDK2018",
+          "version": "V4.0.05756",
+          "release_tag": "prestable2405_0523",
+          "build": "rel",
+          "secure_boot": null,
+          "gmem": null,
+          "path": "5000Series/PC/3A5000-7A2000-EVB/UDK2018-3A5000-7A2000_EVB_V4.0.05756_prestable2405_0523rel.fd",
+          "sha256": "89acab83030967ab7c0b9661eb67872197c576e62e7ec5bce8658b91f7b7b458",
+          "checksum_source": "5000Series/PC/3A5000-7A2000-EVB/SHA256SUMS.txt"
+        }
+      ]
+    },
+    {
+      "series": "6000Series",
+      "category": "PC",
+      "model": "XA61200",
+      "latest": [
+        {
+          "base": "EDK2025",
+          "version": "V5.0.0343",
+          "release_tag": "stable202511",
+          "build": "dbg",
+          "secure_boot": null,
+          "gmem": null,
+          "path": "6000Series/PC/XA61200/EDK2025_XA61200-V1.0_V5.0.0343_stable202511_dbg.fd",
+          "sha256": "ffbb4821f32a22aea1335440421d67b33fcf5423274c87c1cb264db8aa76abae",
+          "checksum_source": "6000Series/PC/XA61200/SHA256SUMS.txt"
+        },
+        {
+          "base": "EDK2025",
+          "version": "V5.0.0343",
+          "release_tag": "stable202511",
+          "build": "rel",
+          "secure_boot": null,
+          "gmem": null,
+          "path": "6000Series/PC/XA61200/EDK2025_XA61200-V1.0_V5.0.0343_stable202511_rel.fd",
+          "sha256": "d9dd972a982b7964c2dbbb6be89c20714d6d2f2fbadc162c4206400919242c1d",
+          "checksum_source": "6000Series/PC/XA61200/SHA256SUMS.txt"
+        }
+      ]
+    }
+  ]
+}
