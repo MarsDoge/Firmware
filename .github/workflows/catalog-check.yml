@@ -1,0 +1,54 @@
+name: Catalog build verification
+
+on:
+  push:
+    branches: [ci-catalog-build-check]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Diagnose Git timestamps
+        run: |
+          git --version
+          python3 --version
+          python3 - <<'PY'
+          import importlib.util
+          import json
+          spec = importlib.util.spec_from_file_location('tests', 'scripts/test_manifest.py')
+          tests = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(tests)
+          case = tests.RepositoryTests('test_no_mtime_and_determinism')
+          case.setUp()
+          try:
+              data = tests.catalog.generate(case.root)
+              print(json.dumps({'warnings': data['warnings'], 'artifacts': case.machine(data)['artifacts']}, indent=2))
+              print(case.run_git('log', '--no-renames', '--format=CATALOG_DATE:%cI', '--name-only', 'HEAD').stdout.decode())
+          finally:
+              case.doCleanups()
+          PY
+      - name: Test catalog rules
+        run: |
+          python3 scripts/test_manifest.py
+          python3 scripts/test_stage_web_images.py
+          node --check web/app.js
+      - name: Build static site
+        run: |
+          python3 scripts/generate-manifest.py --output web/manifest.json
+          python3 scripts/stage-web-images.py
+          node --check web/manifest.js
+      - uses: actions/upload-artifact@v4
+        with:
+          name: catalog-site
+          path: web/
+          if-no-files-found: error
